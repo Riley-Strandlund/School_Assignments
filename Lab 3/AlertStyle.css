@@ -1,0 +1,11 @@
+#real-alert{
+    color:yellow;
+    background-color:red;
+}
+#test-alert{
+    background-color: orange;
+    color: white;
+}
+.milssile-alert-links{
+    display:block;
+}
