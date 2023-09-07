@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Feedback</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    
+    <link href="Form_Style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <form class="mx-5">
+        <div class="bg-info-subtle p-3 text-center">
+            <h1>Please provide feedback.</h1> 
+        </div>  
+        <div class="row">
+            <div class="col-md-6 mt-3">
+                <h2>Instructions</h2>
+
+                <p>As one of our students, your thoughts, feedback and comments are important to us.</p>
+                <p>Please send them using this form.</p>
+                <p>If you would like us to follow up with you, include your contact information.</p>
+            </div><!--1ST COLUMN-->
+            <div class="col-md-6 mt-3">   
+                <div class="form-floating">   
+                    <input class="form-control" name="text-input" type="text" id="name-input" style="width:45%">
+                    <label for="name-input">Name</label>
+                </div><br>
+
+                <div class="form-floating mb-3">
+                    <input class="form-control" name="text-input" type="email" id="email-input" style="width:45%">
+                    <label for="email-input">Email</label>
+                </div>
+        
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" rows="12" cols="100" id="comments" style="height: 100px; width: 75%;" required></textarea>
+                    <label class="comments" for="comments">Comments</label>
+                </div>
+                <label class="m-1" id="student_label">Are you a student?</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Answer" id="Yes" value="option1" checked>
+                    <label class="form-check-label" for="Yes"> Yes</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Answer"  id="No" value="option2">
+                    <label class="form-check-label" for="No">No</label><br><br>
+                </div>
+                <label for="SubmitBtn">
+                <input class="btn btn-primary" type="submit" id="SubmitBtn"></label>
+            </div><!--2ND COLUMN-->
+        </div>
+
+    </form>  
+        
+</body>
+</html>
