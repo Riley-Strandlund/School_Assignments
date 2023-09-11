@@ -1,0 +1,35 @@
+body{
+    background-color: rgb(168, 215, 243);
+    font-family: 'Permanent Marker', cursive;
+}
+#page-title{
+    background-color: rgb(230, 230, 192);
+    border: 1px solid black;
+}
+#name{
+    margin-left: 42.5px;
+    margin-top: 3%;
+    margin-bottom: 2%;
+}
+#password{
+    margin-left:10px;
+    margin-bottom: 2%;
+}
+#email{
+    margin-left: 38px;
+}
+#t-shirt_size{
+    margin-left: 11.5px;
+}
+#morning-text{
+    background-color: yellow;
+}
+#afternoon-text{
+    background-color: orange;
+}
+#special-request{
+    width: 100%;
+    max-width: "cols: 70";
+    height: "rows: 7";
+    resize: none;
+}

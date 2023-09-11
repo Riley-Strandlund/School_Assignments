@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title class ="bg-light">Conference Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    
+    <link href="RegistrationPageStyle.css" type="text/css" rel="stylesheet">
+</head>
+<body class="mx-5">
+    <form>
+        <h1 class="text-center pt-3 pb-3" id="page-title">Conference Registration</h1>
+            <div class="main-content p-4 bg-warning-subtle">
+                <div>
+                    <label for="name">Name:</label>
+                    <input name="input-name" type="text" id="name" maxlength="70" required>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input name="input-password" type="password" id="password" required>
+                </div>
+            
+                <div>
+                    <label for="email">Email:</label>
+                    <input name="input-email" type="email" id="email" placeholder=" abcd123@gmail.com" required>
+                </div>
+
+                <br>
+
+                <div>
+                    <label for="t-shirt_size">T-shirt size:</label>
+                    <select name="input-t-shirt"  id="t-shirt_size" required >
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                    </select>
+                </div>
+
+                <br>
+                
+                <div>
+                    <label for="date">Date of Birth:</label>
+                    <input name="input-date" type="date" id="date" required>
+                </div>
+
+                <br>
+                <h7>Would you like to receive emails?</h7>
+                <div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="radio-yes">Yes</label>
+                        <input class="form-check-input" name="Receive-Email" type="radio" id="radio-yes" required>
+                    </div>
+
+                    <div class="form-check">
+                        <label class="form-check-label" for="radio-no">No</label>
+                        <input class="form-check-input" name="Receive-Email" type="radio" id="radio-no" required>
+                    </div>
+
+                </div>
+
+                <br>
+                
+                <h7>What time will you attend the conference?</h7>
+                <div>
+                    
+                    <label for="morning" id="morning-text">Morning</label>
+                    <input name="Conference-Morning" type="checkbox" id="morning">
+                    &nbsp; <!--This line tabs the checkboxes apart-->
+                    <label for="afternoon" id="afternoon-text">Afternoon</label>
+                    <input name="Conference-Afternoon" type="checkbox" id="afternoon">
+                </div>
+                
+                <br>
+
+                <div>
+                    <label for="special-request">Do you have any special requests?</label><br>  
+                    <textarea name="Additional-comments" id="special-request" placeholder=" Comments" rows="7" cols="70" ></textarea>
+                    
+                </div>
+                <div>
+                    <button class="btn btn-primary" type="submit" id="SubmitBtn">Submit</button>
+                </div>
+            </div>     
+    </form>
+</body>
+</html>
