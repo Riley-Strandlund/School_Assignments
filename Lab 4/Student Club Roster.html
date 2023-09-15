@@ -77,7 +77,7 @@
     studentCountElement.innerHTML = studentRecordCount //add 0 to the html on screen load
 
 
-    addStudentButtonElement.addEventListener('click', function(){
+    addStudentButtonElement.addEventListener('click', function(){//addbutton event start
 
         let studentNameText = newStudentNameElement.value
         let studentIdText = newStudentIdElement.value
@@ -130,16 +130,19 @@
         newStudentRecord.addEventListener('click', function(){//event listener is added to newStudentRecord list element
             newStudentRecord.classList.toggle('selected');//if the event listener 'hears' a click the elements class is set to 'selected'
         })
-    })
+    })//addbutton event end
 
-    removeSelectedStudentsButtonElement.addEventListener('click', function(){
+
+    removeSelectedStudentsButtonElement.addEventListener('click', function(){//removebutton event start
+
         let deleteSelected = document.querySelectorAll('.selected')//looks for elements with the selected class
         deleteSelected.forEach( function(element){//goes through this statement once for each element with selected class
             element.remove() //removes selected element from the Student List
             studentRecordCount -= 1 //decreases the record count by one for each selected class there is
         })
         studentCountElement.innerHTML = studentRecordCount //sets the html to the new studentRecordValue
-    })
+    })//removebutton event end
+
     /* Add the following functionality to this page
 
     [Note on HTML element notation: span#student-count means the span element with id="student-count" ]
