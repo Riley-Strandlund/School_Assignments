@@ -74,17 +74,20 @@
     let removeSelectedStudentsButtonElement = document.querySelector('#remove-selected-students')
 
     let studentRecordCount = 0
+    studentCountElement.innerHTML = studentRecordCount
 
-    
 
     addStudentButtonElement.addEventListener('click', function(){
 
         let studentNameText = newStudentNameElement.value
         let studentIdText = newStudentIdElement.value
         let studentGpaText = newStudentGpaElement.value 
-        let checkAlert = false
-    
+        
+
             let alertMessage = ""
+            if (studentRecordCount === 10){
+                alertMessage += "Student list has reached max capacity."
+            }
             if (studentNameText.trim() === ''){
                 alertMessage += "Student Name Required\n\n"
             }
@@ -94,8 +97,11 @@
             if (studentGpaText.trim() === ''){
                 alertMessage += "Student GPA Required\n\n"
             }
+            if (studentGpaText > 4 || studentGpaText < 0){
+                alertMessage += "Student GPA must be within a range of 0-4"
+            }  
+
             if (alertMessage !== ''){
-                checkAlert = true
                 alert(alertMessage)
                 return
             }
