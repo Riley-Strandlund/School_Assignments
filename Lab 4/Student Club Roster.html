@@ -74,7 +74,7 @@
     let removeSelectedStudentsButtonElement = document.querySelector('#remove-selected-students')
 
     let studentRecordCount = 0
-    studentCountElement.innerHTML = studentRecordCount
+    studentCountElement.innerHTML = studentRecordCount //add 0 to the html on screen load
 
 
     addStudentButtonElement.addEventListener('click', function(){
@@ -82,11 +82,10 @@
         let studentNameText = newStudentNameElement.value
         let studentIdText = newStudentIdElement.value
         let studentGpaText = newStudentGpaElement.value 
-        
+        //the above let statements grab the value of the textboxes
 
-        let alertMessage = ""
-
-        if (studentRecordCount < 10){
+        let alertMessage = "" //this variable collects all alertmessages and compiles them into one alert message
+        if (studentRecordCount < 10){// the if the 'Student List' is less than 10 text validation continues
             if (studentNameText.trim() === ''){
                 alertMessage += "Student Name Required\n\n"
             }
@@ -96,47 +95,50 @@
             if (studentGpaText.trim() === ''){
                 alertMessage += "Student GPA Required\n\n"
             }
-            if (studentGpaText > 4 || studentGpaText < 0){
+            //the above nested if statements trim the white space and if there are no characters appropriate messages are displayed
+            if (studentGpaText > 4 || studentGpaText < 0){//make sure it is with range 0-4 otherwise appropriate message is displayed
                 alertMessage += "Student GPA must be within a range of 0-4"
-            } 
+            }
+            //only one studentGpaText if statement can be true at one time.
         }
-        else if (studentRecordCount === 10){
+        else if (studentRecordCount === 10){// else if 'Student List' already equals 10. Capacity is reached and textbox values are reset.
             alertMessage += "Student list has reached max capacity.\n"
             newStudentNameElement.value = ''
             newStudentIdElement.value = ''
             newStudentGpaElement.value = ''
         }
 
-        if (alertMessage !== ''){
+        if (alertMessage !== ''){//if the variable alertMessage is not empty it means alertMessages have been added making at least one if statement above true
             alert(alertMessage)
             return
         }
-        studentRecordCount = studentRecordCount + 1   
-        studentCountElement.innerHTML = studentRecordCount
+        studentRecordCount = studentRecordCount + 1   //Counts one more record in student list
+        studentCountElement.innerHTML = studentRecordCount//html is made to reflect studentRecordCount
 
-        let newStudentRecord = document.createElement('li')
+        let newStudentRecord = document.createElement('li')//List element created
         
-        newStudentRecord.innerHTML = `${studentNameText}, id: ${studentIdText}, GPA: ${studentGpaText}`
-        studentListElement.appendChild(newStudentRecord)
+        newStudentRecord.innerHTML = `${studentNameText}, id: ${studentIdText}, GPA: ${studentGpaText}`//List element is given a value that passed the above checks
+        studentListElement.appendChild(newStudentRecord)//List element is added to the unordered list and displayed. 
 
         newStudentNameElement.value = ''
 
         newStudentIdElement.value = ''
 
         newStudentGpaElement.value = ''
+        //resets textbox values
 
-        newStudentRecord.addEventListener('click', function(){
-            newStudentRecord.classList.toggle('selected');
+        newStudentRecord.addEventListener('click', function(){//event listener is added to newStudentRecord list element
+            newStudentRecord.classList.toggle('selected');//if the event listener 'hears' a click the elements class is set to 'selected'
         })
     })
 
     removeSelectedStudentsButtonElement.addEventListener('click', function(){
-        let deleteSelected = document.querySelectorAll('.selected')
-        deleteSelected.forEach( function(element){
-            element.remove()
-            studentRecordCount -= 1
+        let deleteSelected = document.querySelectorAll('.selected')//looks for elements with the selected class
+        deleteSelected.forEach( function(element){//goes through this statement once for each element with selected class
+            element.remove() //removes selected element from the Student List
+            studentRecordCount -= 1 //decreases the record count by one for each selected class there is
         })
-        studentCountElement.innerHTML = studentRecordCount
+        studentCountElement.innerHTML = studentRecordCount //sets the html to the new studentRecordValue
     })
     /* Add the following functionality to this page
 
