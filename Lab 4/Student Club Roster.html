@@ -84,13 +84,9 @@
         let studentGpaText = newStudentGpaElement.value 
         
 
-            let alertMessage = ""
-            if (studentRecordCount === 10){
-                alertMessage += "Student list has reached max capacity."
-                newStudentNameElement.value = ''
-                newStudentIdElement.value = ''
-                newStudentGpaElement.value = ''
-            }
+        let alertMessage = ""
+
+        if (studentRecordCount < 10){
             if (studentNameText.trim() === ''){
                 alertMessage += "Student Name Required\n\n"
             }
@@ -102,12 +98,19 @@
             }
             if (studentGpaText > 4 || studentGpaText < 0){
                 alertMessage += "Student GPA must be within a range of 0-4"
-            }  
+            } 
+        }
+        else if (studentRecordCount === 10){
+            alertMessage += "Student list has reached max capacity.\n"
+            newStudentNameElement.value = ''
+            newStudentIdElement.value = ''
+            newStudentGpaElement.value = ''
+        }
 
-            if (alertMessage !== ''){
-                alert(alertMessage)
-                return
-            }
+        if (alertMessage !== ''){
+            alert(alertMessage)
+            return
+        }
         studentRecordCount = studentRecordCount + 1   
         studentCountElement.innerHTML = studentRecordCount
 
@@ -125,7 +128,7 @@
         newStudentRecord.addEventListener('click', function(){
             newStudentRecord.classList.toggle('selected');
         })
-    })  
+    })
 
     removeSelectedStudentsButtonElement.addEventListener('click', function(){
         let deleteSelected = document.querySelectorAll('.selected')
