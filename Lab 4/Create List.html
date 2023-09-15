@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<ul id="list-of-text">
+    <!--create list elements with JS -->
+</ul>
+
+<p>You have <span id="item-count">0</span> items(s)</p>
+
+<input id="new-text">
+
+<button id="add-text-button">Click here</button>
+
+<button id="clear-list">Clear List</button>
+
+<script>
+    
+    // Js nees to add new elements to the list
+    let listOfTextElement = document.querySelector('#list-of-text')
+    
+    // Js needs to know what is typed into the input - and we need to clear textbox
+    let newTextInputElement = document.querySelector('#new-text')
+    
+    // JS needs to know when this button is clicked
+    let addTextButtonElement = document.querySelector('#add-text-button')
+
+    //Clear the input text so user can enter another item
+    let clearListButtonElement = document.querySelector('#clear-list')
+
+    let itemCountElement = document.querySelector('#item-count')
+
+    let numberOfItemsInList = 0
+
+    addTextButtonElement.addEventListener('click', function(){
+
+        let newText = newTextInputElement.value
+        let charactersEntered = newText.length
+        
+        if (charactersEntered == 0){
+            //do nothing
+            return 
+        }
+        if (charactersEntered > 50){
+            alert('Text is too long ' + charactersEntered + ' characters. Max length 50')
+            newTextInputElement.value = '';
+            return //don't add to list
+        }
+        if (numberOfItemsInList >= 10){ //prevents too many items
+            alert('Too many items')
+            return // end the function
+        }
+
+        numberOfItemsInList++
+        itemCountElement.innerHTML = numberOfItemsInList
+
+
+        // Make a new list element
+        let newListItem = document.createElement('li')
+
+        // Read the text the user typed into the input
+        newListItem.innerHTML = newText
+
+        // where on the page does this element go?
+        // Add it as a child of the ul list element
+        listOfTextElement.appendChild(newListItem)
+
+        newTextInputElement.value = '';
+        
+
+    })
+    clearListButtonElement.addEventListener('click', function(){
+        listOfTextElement.innerHTML = '' 
+        numberOfItemsInList = 0
+        itemCountElement.innerHTML = numberOfItemsInList
+    })
+</script>
+
+</body>
+</html>
