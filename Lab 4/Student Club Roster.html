@@ -87,6 +87,9 @@
             let alertMessage = ""
             if (studentRecordCount === 10){
                 alertMessage += "Student list has reached max capacity."
+                newStudentNameElement.value = ''
+                newStudentIdElement.value = ''
+                newStudentGpaElement.value = ''
             }
             if (studentNameText.trim() === ''){
                 alertMessage += "Student Name Required\n\n"
