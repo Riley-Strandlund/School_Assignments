@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Tree Order Form</title>
+
+  <style>
+      
+      input, select {
+          width: 100%;
+          padding: 5px;
+          margin: 5px 5px 5px 0px;
+          box-sizing: border-box;
+      }
+
+      input.error, select.error {
+        border: 2px red solid;
+      }
+
+  </style>
+
+</head>
+<body>
+
+    <h1>Minnesota Tree Order Form</h1>
+
+    <p>Enter information to order your tree. All fields are required.</p>
+
+    <h2>Order Information</h2>
+
+    <label for="homeowner-name">Homeowner Name</label><input id="homeowner-name" name="homeowner-name">
+    <br>
+    <label for="homeowner-house-number">House Number</label><input id="homeowner-house-number" name="homeowner-house-number" type="number">
+    <br>
+    <label for="homeowner-street-name">Street Name</label><input id="homeowner-street-name" name="homeowner-street-name">
+    <br>
+    <label for="city">City</label><input id="city" name="city"> 
+    <br>
+    <!-- All orders must be for Minnesota, so this input is not editable -->
+    <label for="state">State</label><input id="state" name="state" value="Minnesota" disabled> 
+    <br>
+    <label for="zipcode">Zip Code</label><input id="zipcode" name="zipcode" type="number"><!--type="number" only accepts number input, answer acquired from google-->
+    <br>
+
+    <label for="tree-type">Tree Type</label>
+    <select id="tree-type">
+        <!-- Unselectable message shown. Since this will be required, it forces the user to actually pick a tree, not just click submit for the default first option -->
+        <option disabled selected value=""> Select a tree </option>  
+        <!-- The options that the user will be allowed to select, or choose from -->
+        <option name="tree-type">Cedar</option>
+        <option name="tree-type">Maple</option>
+        <option name="tree-type">Oak</option>
+    </select>
+    <br>
+
+    <button id="submit-order">Submit Order</button>    
+
+    <h2>Order Summary</h2>
+
+    <p id="order-summary">
+        <!-- TODO Use JavaScript to display the order information, 
+            only if all the required information is entered  -->
+    </p>
+    
+
+
+<script>
+
+    let homeownerNameInput = document.querySelector('#homeowner-name')
+    let homeownerHouseNumberInput = document.querySelector('#homeowner-house-number')
+    let homeownerStreetNameInput = document.querySelector('#homeowner-street-name')
+    let treeTypeSelect = document.querySelector('#tree-type')
+
+    // TODO create a variable for city input element
+    let homeownerCityInput = document.querySelector('#city')
+
+    // TODO create a variable for zip code input element
+    let homeownerZipCodeInput = document.querySelector('#zipcode')
+
+    let submitButton = document.querySelector('#submit-order')
+
+    let orderSummaryParagraph = document.querySelector('#order-summary')
+
+    submitButton.addEventListener('click', function() {
+
+        let name = homeownerNameInput.value 
+        let houseNumber = homeownerHouseNumberInput.value
+        let streetName = homeownerStreetNameInput.value
+        let treeType = treeTypeSelect.value
+        // TODO get the value from the input#city
+        let city = homeownerCityInput.value
+        // TODO get the value from the input#zipcode
+        let zip_code = homeownerZipCodeInput.value
+        // TODO Validate that all six input and select elements have been completed
+        //  - check they all have a value
+
+        // TODO Validate the zipcode is in the range 55001 and 56763. 
+        // to check that the zip code is in Minnesota.
+        // Make sure your script doesn't accept non-numeric input for the zip code. (In the html I added a type="number" attribute to only accept numeric input)
+
+        // Optional extra: add the class .error to any inputs with an error (and only inputs with an error)
+        // to give the user visual feedback for which inputs need to be fixed or completed. 
+        // There's a style for input.error and select.error defined in the styles (in the head)
+        // which will be applied if you give the class .error to any elements on the page. 
+        // Make sure you remove this class when the form is completed correctly.
+
+        // If a form element has not been completed, or if the data is not valid, 
+        // add an error message to the errors array. (Hint: use push to add to the end of the array)
+        // Add one error message for each problem with the form. 
+        let errors = []
+          
+        if (name.length == 0){
+            errors.push('Enter your name.')
+            homeownerNameInput.classList.toggle('error')
+        }
+        if (!houseNumber){
+            errors.push('Enter your house number.')
+            homeownerHouseNumberInput.classList.toggle('error')
+        }
+        if (!streetName){
+            errors.push('Enter your street name.')
+            homeownerStreetNameInput.classList.toggle('error')
+        }
+        if (!city){
+            errors.push('Enter your city name.')
+            homeownerCityInput.classList.toggle('error')
+        }
+        if (zip_code.length == 0){//In the html I added a type="number" attribute to only accept numeric inputs
+            errors.push('Enter your zip code.')
+            homeownerZipCodeInput.classList.toggle('error')
+        }else{
+            if (zip_code <= 55001 || zip_code >= 56763){
+                errors.push('Zip Code must be from Minnesota 55001-56763.')
+                homeownerZipCodeInput.classList.toggle('error')
+            }         
+        }
+        if (!treeType){
+            errors.push('Select a tree type.')
+            treeTypeSelect.classList.toggle('error')
+        }
+
+        // TODO - If there are any errors after checking all of the input elements, 
+        // display an alert with all of the error messages. (Hint: use join)
+        // and then return from this function to prevent further processing 
+        if (errors.length > 0){
+            let errorMsg = errors.join('\n')
+            alert(errorMsg)
+            return
+        }
+
+        // TODO - If there are no errors, use a template string to display an order 
+        // summary in the order summary paragraph.
+        else{
+            homeownerNameInput.classList.remove('error')
+            homeownerHouseNumberInput.classList.remove('error')
+            homeownerStreetNameInput.classList.remove('error')
+            homeownerCityInput.classList.remove('error')
+            homeownerZipCodeInput.classList.remove('error')
+            treeTypeSelect.classList.remove('error')
+            orderSummaryParagraph.innerHTML = `Name: ${name} | House Number: ${houseNumber} | Street Name: ${streetName} | City: ${city} | Zip Code: ${zip_code} | Tree Type: ${treeType}`
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic 8 Ball</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-size: 20px;
+
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Ask the Magic 8 Ball Your Questions!</h1>
+    <input id="question-text">
+
+    <button id="ask">Ask</button>
+
+    <p id="answer"></p>
+
+    <script>
+
+        let questionTextElement = document.querySelector('#question-text')
+        let submitButton = document.querySelector('#ask')
+        let answerDisplayElement = document.querySelector('#answer')
+
+        submitButton.addEventListener('click', function() {
+            // TODO read the text from the questionTextElement and use it to set the value of this variable. 
+            // It will be used in the next line 
+            let question = questionTextElement.value
+            
+            let eight_ball_url = `https://magic-8-ball-mctc.uc.r.appspot.com/magic/JSON/${question}`
+            console.log(eight_ball_url)  // for debugging - is the correct URL created? 
+
+            fetch(eight_ball_url)
+                .then(response => response.json())
+                .then(data => {
+      
+                    // data is an object containing the JSON response from the server 
+                    console.log(data)
+                    let magic = data.magic
+                    /* TODO Extract the answer from the server's response. 
+                    The response is in the form,
+                    
+                    {
+                        "magic": {
+                            "answer": "Better not tell you now.",
+                            "question": "Will it snow today",
+                            "type": "Non-committal"
+                        }
+                    }
+                    
+                    So, you need the answer value - note that there's a nested object. 
+                    
+                    */
+
+                    /* TODO display the message in the answerDisplayElement */ 
+                    
+                    let answer = magic.answer
+                    answerDisplayElement.innerHTML = answer
+
+
+
+              
+              
+              
+
+
+                    
+                    /* Your code goes above this line */
+     
+
+                })
+                .catch(err => console.log(err))
+        })
+
+
+    </script>
+</body>
+</html>

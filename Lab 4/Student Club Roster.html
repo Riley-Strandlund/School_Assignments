@@ -136,7 +136,7 @@
     removeSelectedStudentsButtonElement.addEventListener('click', function(){//removebutton event start
 
         let deleteSelected = document.querySelectorAll('.selected')//looks for elements with the selected class
-        deleteSelected.forEach( function(element){//goes through this statement once for each element with selected class
+        deleteSelected.forEach(function(element){//goes through this statement once for each element with selected class
             element.remove() //removes selected element from the Student List
             studentRecordCount -= 1 //decreases the record count by one for each selected class there is
         })
