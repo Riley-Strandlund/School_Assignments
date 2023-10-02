@@ -1,0 +1,12 @@
+#bridge-map {
+    width: 600px;
+    height:  500px;
+    border: 5px solid black;
+    margin: 0 auto;
+}
+#bridge-chart {
+    width: 600px;
+    height: 500px;
+    border: 5px solid black;
+    margin: 0 auto;
+}
