@@ -981,50 +981,50 @@ let bridgeData = [
         }
     })
 
-    let plainBridge = new bridgeIcon({iconUrl:'bridges_uncolored.png'}),
+    let plainBridge = new bridgeIcon({iconUrl:'bridges_uncolored.png'}),//set variable equal to a specific bridge icon
         coloredBridge = new bridgeIcon({iconUrl: 'bridges_colored.png'})
 
     //create a map - like in videos
-    let map = L.map('bridge-map').setView(newYorkCoordinates, zoomLevel)
+    let map = L.map('bridge-map').setView(newYorkCoordinates, zoomLevel)//set which div to put your map ('bridge-map'), then using coordinates and zoom level shows where you view and how close you view items on the map
     // loop over your bridge data array.
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { //sets the map image
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' //referenced website
+    }).addTo(map);//adds it to the map variable
 
 
 let bridgeSpan = []
-bridgeData.forEach(function(findMax){
-    bridgeSpan.push(findMax['span'])
+bridgeData.forEach(function(findMax){//goes through bridgeData object
+    bridgeSpan.push(findMax['span']) //pushes the spans of each item found in the object
 })
 bridgeData.forEach(function(importantBridges){
-    let markerText = `${importantBridges.name}<br>City/State: ${importantBridges.city}<br>Length: ${importantBridges.span_text}`
-    if (Math.max(...bridgeSpan) === importantBridges['span']){ 
-        L.marker(importantBridges.location, {icon: coloredBridge}).bindPopup(markerText).addTo(map)
+    let markerText = `${importantBridges.name}<br>City/State: ${importantBridges.city}<br>Length: ${importantBridges.span_text}`//annotation outline
+    if (Math.max(...bridgeSpan) === importantBridges['span']){ //the if/else statement finds the max value in bridgeSpan and gives it the coloredBridge icon.
+        L.marker(importantBridges.location, {icon: coloredBridge}).bindPopup(markerText).addTo(map) //sets marker to a coloredBridge icon
     }
     else{
-        L.marker(importantBridges.location, {icon: plainBridge}).bindPopup(markerText).addTo(map)
+        L.marker(importantBridges.location, {icon: plainBridge}).bindPopup(markerText).addTo(map) //sets marker to a plainBridge icon
     }
 })
-let canvas = document.querySelector('#bridge-chart')
-let context = canvas.getContext('2d')
+let canvas = document.querySelector('#bridge-chart')//code that tells the chart where to go
+let context = canvas.getContext('2d') //creates the canvas space
 
 let bridgeSpanData = []
 let bridgeLabels = []
 
 bridgeData.forEach(function(expenseChartInfo){
-    bridgeSpanData.push(expenseChartInfo['span'])
-    bridgeLabels.push(expenseChartInfo['name'])
+    bridgeSpanData.push(expenseChartInfo['span'])//pushes the span of each item in the bridgeData object
+    bridgeLabels.push(expenseChartInfo['name']) //pushes the name of each span item in the bridgeData object
 })
 
 let bridgeChart = new Chart(context, {
-    type: 'bar',
+    type: 'bar',//sets chart type
     data: {
-        labels: [...bridgeLabels],
+        labels: [...bridgeLabels],//grabs the span names from the array bridgeLabels
         datasets: [
             {
-                label: 'Span',
-                data: [...bridgeSpanData],
-                backgroundColor: ['black', 'blue', 'red', 'green', 'purple', 'pink', 'yellow', 'brown','orange', 'gray']
+                label: 'Span',//describes the data
+                data: [...bridgeSpanData],//grabs the span data from bridgeSpanData array
+                backgroundColor: ['black', 'blue', 'red', 'green', 'purple', 'pink', 'yellow', 'brown','orange', 'gray']//sets the colors to use for the bar graph. The colors are used in order
             }]
     }
 })
