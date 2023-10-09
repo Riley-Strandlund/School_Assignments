@@ -972,8 +972,8 @@ let bridgeData = [
 ]
     //ToDo create other bridge objects
 
-    let newYorkCoordinates = [40.7128, -74.0060]
-    let zoomLevel = 8
+    let newYorkCoordinates = [0, -0]
+    let zoomLevel = 1
 
     let bridgeIcon = L.Icon.extend({
         options:{
