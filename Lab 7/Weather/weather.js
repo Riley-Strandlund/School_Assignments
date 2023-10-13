@@ -20,9 +20,9 @@ let weatherTableElement = document.querySelector('#weather-forecast')
     argument to then() is the data the promise resolves to - the data from the API server
     this data is bytes - 1s and 0s.
 */
-fetch(weatherUrl).then( function(responseFromAPIServe) { 
+fetch(weatherUrl).then( function(responseFromAPIServer) { 
     //have to convert this response - the 1s and 0s from the network - into JSON
-    return responseFromAPIServe.json() //creates  another Promise
+    return responseFromAPIServer.json() //creates  another Promise
 
     // returns a Promise from a then function callback, 
     //we can wait for and handle the response in a chained then function
@@ -30,24 +30,33 @@ fetch(weatherUrl).then( function(responseFromAPIServe) {
     let properties = jsonData.properties
     let periods = properties.periods
     console.log(periods)
-    periods.forEach(function(forecastPeriod){
+    periods.forEach(function(forecastPeriod){//each loop creates a new row for each day available
         let forecastPeriodName = forecastPeriod.name
         let temperature = forecastPeriod.temperature
-        let forecastImageUrl = forecastPeriod.icon
         // ToDo windspeed info
+        let windspeed = forecastPeriod.windSpeed
+        let forecastImageUrl = forecastPeriod.icon
+        let detailedForecast = forecastPeriod.detailedForecast
+        
         console.log(forecastPeriodName, temperature, forecastImageUrl)
-        // ToDo - display this in the HTML - create new table elements
 
+
+        //The below creates variables to create new table elements to add api data to the html
         let newTableRowElement = document.createElement('tr')
         weatherTableElement.appendChild(newTableRowElement)
         
-        let newForecastPeriodNameElement = document.createElement('td')
-        newForecastPeriodNameElement.innerHTML = forecastPeriodName
-        newTableRowElement.appendChild(newForecastPeriodNameElement)
+        let newForecastPeriodNameElement = document.createElement('td')//creates element
+        newForecastPeriodNameElement.innerHTML = forecastPeriodName //assigns element a value
+        newTableRowElement.appendChild(newForecastPeriodNameElement)//adds it to the table
 
         let newTemperatureElement = document.createElement('td')
         newTemperatureElement.innerHTML = temperature + 'F'
         newTableRowElement.appendChild(newTemperatureElement)
+
+        // ToDo - display this in the HTML - create new table elements
+        let newWindSpeedElement = document.createElement('td')
+        newWindSpeedElement.innerHTML = windspeed
+        newTableRowElement.appendChild(newWindSpeedElement)
 
         let newImageTableDataElement = document.createElement('td')
         let newImageElement = document.createElement('img')
@@ -56,24 +65,9 @@ fetch(weatherUrl).then( function(responseFromAPIServe) {
         newTableRowElement.appendChild(newImageTableDataElement) //add the 'td' element to the table row
 
         //todo detailed forecast
+        let newDetailedForecastElement = document.createElement('td')//adds table data section for the forecast
+        newDetailedForecastElement.innerHTML = detailedForecast //sets table data element to the api data variable
+        newTableRowElement.appendChild(newDetailedForecastElement)//adds new element
         //todo extra credit question see class agenda
     })
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
