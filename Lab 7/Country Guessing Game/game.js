@@ -27,7 +27,7 @@ function getRandomCountry(){
 let randomCountry = getRandomCountry();
 randomCountryElement.innerHTML = randomCountry;//Display's random element in the country placeholder
 
-function getAlphaCode(randomCountry){
+function getAlphaCode(randomCountry){//sets alpha code to lower case to make compatible with API
     for (country in countriesAndCodes){
         if (countriesAndCodes[country]['name'] === randomCountry){
             alpha2 = countriesAndCodes[country]['alpha-2'].toLowerCase();
@@ -60,17 +60,17 @@ submitButton.addEventListener('click', function(){
         }
         return responseFromAPIServer.json();
     }).then( function(jsonData){
-        capitalCity = jsonData[1][0]['capitalCity'];
-        let lowercaseCapitalCity = capitalCity.toLowerCase();
+        capitalCity = jsonData[1][0]['capitalCity']; //gets capitalCity info
+        let lowercaseCapitalCity = capitalCity.toLowerCase(); //set's capitalCity to lowercase
         console.log(capitalCity);
         if (answeredCorrect === 0){
-            if (attempts != 3){
-                if (answer === lowercaseCapitalCity){
+            if (attempts != 3){//continues if attempts doesn't equal 3
+                if (answer === lowercaseCapitalCity){//compares the answer to the input 
                     resultTextElement.innerHTML = `You are correct the answer is ${capitalCity}`;
-                    answeredCorrect += 1;
+                    answeredCorrect += 1;//if they answered correctly it won't let them continue to guess
                 }else if (answer != lowercaseCapitalCity){
                     attempts += 1;
-                    resultTextElement.innerHTML = `You are wrong. Attempt:${attempts}/3`;
+                    resultTextElement.innerHTML = `You are wrong. Attempt:${attempts}/3`;//shows number of
                     console.log(attempts)
                 }  
             }else if (attempts === 3){
@@ -79,7 +79,7 @@ submitButton.addEventListener('click', function(){
         }else{
             alert('You already gave the correct answer')
         }
-        userAnswerElement.value = ''
+        userAnswerElement.value = ''//sets answer box to empty
     })
     .catch(function(error){
         console.error('Error fetching data:', error);
@@ -89,10 +89,11 @@ submitButton.addEventListener('click', function(){
 // TODO finally, connect the play again button. Clear the user's answer, select a new random country, 
 // display the country's name, handle the user's guess. If you didn't use functions in the code you've 
 // already written, you should refactor your code to use functions to avoid writing very similar code twice. 
-playAgainButtonElement.addEventListener('click', function(){
+playAgainButtonElement.addEventListener('click', function(){//resets values and grabs a new random country to guess
     capitalCity = '';
-    userAnswerElement.value = ''
-    randomCountry = getRandomCountry(randomCountry);
+    userAnswerElement.value = '';
+    answeredCorrect = 0;
+    randomCountry = getRandomCountry();
     randomCountryElement.innerHTML = randomCountry;
     resultTextElement.innerHTML = 'Replace with result';
 })

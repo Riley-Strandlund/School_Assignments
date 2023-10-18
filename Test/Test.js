@@ -1,3 +1,2 @@
-let text = 'kittens'
-let indexOfZ = text.indexOf('Z')
-console.log(indexOfZ)
+let trees = ['oak', 'palm', 'birch']
+trees.forEach( tree => console.log(tree))
