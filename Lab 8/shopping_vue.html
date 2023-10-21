@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Shopping Cart</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <style>
+        th, td {
+            width: 25%;
+            text-align: center;
+        }
+    </style>
+    <div id="app">
+        <table>
+            <tr>
+                <th>Item</td>
+                <th>Unit Price</td>
+                <th>Quantity</td>
+                <th>Total</td>
+            </tr>
+            <tr>
+                <td> {{ name }}</td><!--Links with name variable to display information-->
+                <td> {{ unitPrice }}</td><!--links with unitPrice variable to display information-->
+                <td><input type="number" v-model="quantity"></td><!--Sets quantity to whatever input is and ensures only numbers can be input-->
+                <td> {{ total }} </td>
+            </tr> 
+        </table>
+
+    </div>
+
+    <script>
+        const {createApp, ref, computed} = Vue //Creates app instance, creates reactive values, performs calculation and updates when value changes
+        createApp({
+            setup() {
+                const name = ref('Hat')
+                const quantity = ref(1)
+                const unitPrice = ref(4.99)
+
+                const total = computed( function() {
+                    const totalPrice = quantity.value * unitPrice.value //multiply unitPrice by quantity to get total
+                    const formattedPrice = totalPrice.toFixed(2)//limits value to two decimal places
+                    return formattedPrice
+                })
+
+                return {//returns values
+                    name,
+                    quantity,
+                    unitPrice,
+                    total
+                }
+
+            }
+        }).mount('#app')
+
+
+    </script>
+</body>
+</html>

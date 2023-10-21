@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue To Do</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Task List</h1>
+
+        <h2>Enter new task</h2>
+        <label>Please enter your to-do task </label>
+        <input v-model="newTask"><br><!--input === newTask.value-->
+        <button v-on:click="addTask">Add Task</button><!--On click element simplified then calls a function-->
+
+        <h2>Task List</h2>
+        <ul><!--Prints each item in the taskList array-->
+            <li v-for="task in taskList">
+                {{task}}
+            </li> 
+        </ul>
+
+    </div>
+
+    <script>
+        const {createApp, ref} = Vue
+        createApp({
+            setup() {
+                const taskList = ref(['Water plants', 'Pay cellphone bill', 'Wash floor'])//array containing tasks
+                const newTask = ref('')//sets an empty value to input
+
+                function addTask() {
+                    //addnewTask to taskList
+                    if (newTask.value) {//if it has a value continue
+                        taskList.value.push(newTask.value)//add item to array
+                        newTask.value = ''//set input box to false
+                    }
+                }
+                return{
+                    taskList,
+                    newTask,
+                    addTask
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

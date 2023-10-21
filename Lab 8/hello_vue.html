@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Hello Vue</title>
+</head>
+<body>
+    <div id="app">
+        <!-- Vue manages the html in this div -->
+        <h1>Hello Vue</h1>
+        <p>
+            {{ message }}<br>
+            {{ messageWithExclamationPoints }}<!--Displays message + exclamation marks for each button press up to 10-->
+        </p>
+
+        <button v-on:click="addExclamationPoints">Add Exclamation Points</button><!--detects button press and adds a '!'-->
+        <button v-on:click="clearExclamationPoints">Clear</button><!--detects button press to reset message-->
+    </div>
+
+    <script>
+        const { createApp, ref, computed } = Vue //This line only grabs needed components from vue
+
+        createApp({
+            setup(){
+                const message = ref('hi')
+                const numberOfExclamationPoints = ref(0)//counts how many '!' there are
+
+                function addExclamationPoints() {
+                    if (numberOfExclamationPoints.value != 10){//if there are less than 10 of these => '!'
+                        numberOfExclamationPoints.value ++ //add one to the counter
+                    }else{
+                        alert('No more exclamation points')// if there are 10 of these => '!' alert. NO MORE!
+                    }
+                }
+
+                function clearExclamationPoints(){ //resets count of these => '!'
+                    numberOfExclamationPoints.value = 0
+                }
+
+                const messageWithExclamationPoints = computed( function(){
+                    let computedMessage = message.value //gets message value
+                    for (let x = 0; x < numberOfExclamationPoints.value; x++){//if x is less than counter continue
+                        computedMessage = computedMessage + '!' //gets message and adds one of these => '!'
+                    }
+                    return computedMessage
+                })
+
+                return {//returns values
+                    message,
+                    addExclamationPoints,
+                    messageWithExclamationPoints,
+                    numberOfExclamationPoints,
+                    clearExclamationPoints
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
