@@ -1,0 +1,20 @@
+Learn more about Vite @ https://vitejs.dev/
+
+Create Files for new App
+1. Open Command Prompt
+2. Change Directory to where project is saved. Command is:  (cd filename). Click Enter
+3. Run command (npm create vite@latest) Click Enter
+4. Name Project. Click Enter
+5. Select Framework Vue (because that is what I am currently using). Click Enter
+6. Select Variant JavaScript. Click Enter
+7. *Gives commands to run*. If mistakes were made press 'Esc'
+8. cd 'projectName' create a new sub-directory. Click Enter
+9. npm install
+10. npm run dev (to run server)
+
+
+To Start the Local Server:
+1. Open Command Prompt
+2. Change Directory To (D:MCTC_College\Web Client and Server Programming\.vscode\Lab 10\would-you-rather)
+3. npm run dev (To start server)
+4. CTRL C to end server session

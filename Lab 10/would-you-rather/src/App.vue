@@ -9,9 +9,9 @@ const wyrQuestion = ref('Live in a house shaped like a triangle or a house shape
 const wyrAnswer1 = ref('Triangle house')
 const wyrAnswer2 = ref('Circle house')
 
-// this will store the user's answer once they make a choice
 
-const userSelection = ref('')
+
+const userSelection = ref('')// this will store the user's answer once they make a choice
 
 function updateUserSelection(userChoice) {
   userSelection.value = `Thanks! You chose ${userChoice}`
@@ -25,6 +25,7 @@ function updateUserSelection(userChoice) {
 
     <h1>Would You Rather?</h1>
 
+    <!-- The below code references another component file. The below is another 'box' in the vue dev tools-->
     <WouldYouRather 
     v-bind:question="wyrQuestion" 
     v-bind:answer1="wyrAnswer1" 
@@ -40,7 +41,6 @@ function updateUserSelection(userChoice) {
 </template>
 
 <style scoped>
-
 #app-component {
   font-size: 1em;
   background-color: aqua;
@@ -50,6 +50,4 @@ function updateUserSelection(userChoice) {
 p {
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
-
-
 </style>

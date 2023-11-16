@@ -33,7 +33,7 @@ watch(choice, () => {
 <div id="wyr">
   <h2>Make Your Choice!</h2>
 
-  <p>{{  question }}</p>
+  <p>{{ question }}</p>
 
   <div>
     <input v-model="choice" v-bind:value="answer1" type="radio" id="answer-1"> <!--1st way, add v-on:change="choiceMade"-->
