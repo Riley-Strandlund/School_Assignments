@@ -3,6 +3,6 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/deploying-vite-project-example/',
+  base: '/School_Assignments/',
   plugins: [vue()],
 })
