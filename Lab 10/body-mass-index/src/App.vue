@@ -5,13 +5,9 @@ import { ref } from 'vue'
 
 const bmi = ref('')
 
-const reformatStatsEntered = ({ heightInput, weightInput}) => {
-  BMICalculation(heightInput, weightInput)
-}
-
 const BMICalculation = (heightInput, weightInput) => {
   bmi.value = (weightInput / (heightInput * heightInput)).toFixed(2)
-}
+}//takes two parameters to find the bmi value
 
 </script>
 
@@ -20,15 +16,15 @@ const BMICalculation = (heightInput, weightInput) => {
     <h1>Body Mass Index Calculator</h1>
 
     <BodyMassIndexForm
-    v-on:stats-entered="reformatStatsEntered"
+    v-on:stats-entered="BMICalculation"
     ></BodyMassIndexForm>
+    <!--The above connects to the child component to receive the data and send data if necessary.
+    When the event 'stats-entered' is emitted it sends the data to BMICalculation function to get BMI-->
+
     <div id="bmi-style">
       BMI is: {{ bmi }}
     </div>
-    
-
   </div>
-
 </template>
 
 
